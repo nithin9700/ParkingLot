@@ -1,0 +1,182 @@
+@startuml
+enum BillStatus {
++  PAID
++  UNPAID
+}
+
+
+enum VehicleType {
++  TWO_WHEELER
++  FOUR_WHEELER
++  EV_VEHICLE
++  LUXURY_VEHICLE
+}
+
+class EVParkingSpot {
+- ChargerStatus chargerStatus
+}
+
+
+enum FloorStatus {
++  AVAILABLE
++  NOT_AVAILABLE
+}
+
+class Gate {
+- GateStatus gateStatus
+- GateType gateType
+- int gateNumber
+- String operator
+}
+
+
+enum PaymentStatus {
++  SUCCESSFUL
++  IN_PROGRESS
++  FAILED
+}
+
+enum ChargerStatus {
++  AVAILABLE
++  NOT_AVAILABLE
+}
+
+class Vehicle {
+- String vehicleNumber
+- String color
+- VehicleType vehicleType
+}
+
+
+class ParkingFloor {
+- int floorNumber
+- Gate entryGate
+- Gate exitGate
+- FloorStatus floorStatus
+- List<ParkingSpot> parkingSpots
+}
+
+
+class ParkingFloor$Bill {
+- Ticket ticket
+- double amount
+- LocalDateTime exitTime
+- BillStatus billStatus
+}
+
+enum GateType {
++  ENTRY
++  EXIT
+}
+
+class Payment {
+- Bill bill
+- PaymentMode paymentMode
+- String transactionId
+- double amount
+- PaymentStatus paymentStatus
+- LocalDateTime paymentTime
+}
+
+
+class BaseModel {
+- int id
+- LocalDateTime createdAt
+- LocalDateTime updatedAt
+- String createdBy
+- String updatedBy
+}
+
+
+class Bill {
+- LocalDateTime exitTime
+- double amount
+- BillStatus billStatus
+- Ticket ticket
+- Gate exitGate
+}
+
+
+class Ticket {
+- LocalDateTime entryTime
+- ParkingSpot parkingSpot
+- VehicleType vehicleType
+- Vehicle vehicle
+}
+
+
+enum GateStatus {
++  OPENED
++  CLOSED
++  UNDER_MAINTENANCE
+}
+
+enum PaymentMode {
++  UPI
++  CARD
++  CASH
+}
+
+enum ParkingLotStatus {
++  AVAILABLE
++  NOT_AVAILABLE
++  UNDER_MAINTENANCE
+}
+
+enum ParkingSpotStatus {
++  AVAILABLE
++  NOT_AVAILABLE
++  UNDER_MAINTENANCE
+}
+
+enum GuardStatus {
++  AVAILABLE
++  NOT_AVAILABLE
+}
+
+class LuxuryParkingSpot {
+- GuardStatus guardStatus
+}
+
+
+class SpotAllocationStrategy {
+}
+class BillCalculationStrategy {
+}
+class ParkingLot {
+- List<ParkingFloor> floors
+- int capacity
+- ParkingLotStatus parkingLotStatus
+- String name
+- List<VehicleType> vehicleTypesSupported
+- String address
+- BillCalculationStrategy billCalculationStrategy
+- SpotAllocationStrategy spotAllocationStrategy
+
+}
+
+
+class ParkingSpot {
+- int parkingSpotNumber
+- ParkingSpotStatus parkingSpotStatus
+- VehicleType vehicleType
+- Vehicle vehicle
+
+}
+
+
+
+
+ParkingSpot <|-- EVParkingSpot
+BaseModel <|-- Gate
+BaseModel <|-- Vehicle
+BaseModel <|-- ParkingFloor
+ParkingFloor +.. ParkingFloor$Bill
+BaseModel <|-- ParkingFloor$Bill
+BaseModel <|-- Payment
+BaseModel <|-- Bill
+BaseModel <|-- Ticket
+ParkingSpot <|-- LuxuryParkingSpot
+BaseModel <|-- ParkingLot
+BaseModel <|-- ParkingSpot
+@enduml

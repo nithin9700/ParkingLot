@@ -9,10 +9,10 @@ public class BaseModel {
     private String createdBy;
     private String updatedBy;
 
-    public BaseModel() {
+    protected BaseModel() {
     }
 
-    public BaseModel(int id, LocalDateTime createdAt, LocalDateTime updatedAt, java.lang.String createdBy, java.lang.String updatedBy) {
+    protected BaseModel(int id, LocalDateTime createdAt, LocalDateTime updatedAt, java.lang.String createdBy, java.lang.String updatedBy) {
         this.id = id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
