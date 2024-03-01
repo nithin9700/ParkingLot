@@ -1,6 +1,5 @@
 package repository;
 
-import models.ParkingFloor;
 import models.ParkingSpot;
 import Exception.InvalidParkingSpot;
 import java.util.HashMap;

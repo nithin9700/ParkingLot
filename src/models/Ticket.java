@@ -9,15 +9,25 @@ public class Ticket extends BaseModel{
     private ParkingSpot parkingSpot;
     private VehicleType vehicleType;
     private Vehicle vehicle;
+    private boolean surge;
 
     public Ticket() {
     }
 
-    public Ticket(LocalDateTime entryTime, ParkingSpot parkingSpot, VehicleType vehicleType, Vehicle vehicle) {
+    public Ticket(LocalDateTime entryTime, ParkingSpot parkingSpot, VehicleType vehicleType, Vehicle vehicle, boolean surge) {
         this.entryTime = entryTime;
         this.parkingSpot = parkingSpot;
         this.vehicleType = vehicleType;
         this.vehicle = vehicle;
+        this.surge = surge;
+    }
+
+    public boolean isSurge() {
+        return surge;
+    }
+
+    public void setSurge(boolean surge) {
+        this.surge = surge;
     }
 
     public LocalDateTime getEntryTime() {

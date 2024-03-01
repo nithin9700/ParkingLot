@@ -15,12 +15,12 @@ public class ParkingLotRepository {
 
     public void set(ParkingLot parkinglot) {
         parkingLotTable.put(++parkingLotId, parkinglot);
-        System.out.println("parkinglot has been added to repository" + parkingLotId);
+        System.out.println("ParkingLot has been added to repository" + parkingLotId);
     }
 
-    public ParkingLot get(int parkinglotId) {
-        ParkingLot parkinglot = parkingLotTable.get(parkinglotId);
-        if (parkinglot == null) throw new InvalidParkingLot("parkinglot id was not found in dataBase : " + parkinglotId);
+    public ParkingLot get(int parkingLotId) {
+        ParkingLot parkinglot = parkingLotTable.get(parkingLotId);
+        if (parkinglot == null) throw new InvalidParkingLot("ParkingLot id was not found in dataBase : " + parkingLotId);
         return parkinglot;
     }
 }

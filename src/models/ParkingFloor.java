@@ -1,5 +1,6 @@
 package models;
 
+import models.enums.BillStatus;
 import models.enums.FloorStatus;
 
 import java.time.LocalDateTime;
@@ -61,14 +62,5 @@ public class ParkingFloor extends BaseModel{
 
     public void setParkingSpots(List<ParkingSpot> parkingSpots) {
         this.parkingSpots = parkingSpots;
-    }
-
-    public static class Bill extends BaseModel {
-        private Ticket ticket;
-        private double amount;
-        private LocalDateTime exitTime;
-
-        private BillStatus billStatus;
-
     }
 }
