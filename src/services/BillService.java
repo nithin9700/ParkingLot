@@ -15,7 +15,7 @@ import services.Strategy.BillCalculationStrategy.BillCalculationStrategyFactory;
 import services.TicketService;
 
 public class BillService {
-    private final Ticket ticket;
+    private Ticket ticket;
     private final BillRepository billRepository;
     private final ParkingFloorRepository parkingFloorRepository;
     private final ParkingSpotRepository parkingSpotRepository;
@@ -28,7 +28,7 @@ public class BillService {
     }
 
     public Bill billGenerator(int ticketID){
-        Ticket ticket = ticketRepository.get(ticketID);
+        ticket = ticketRepository.get(ticketID);
         BillCalculationStrategy billCalculationStrategy;
         billCalculationStrategy = BillCalculationStrategyFactory.getBillCalculationStrategy(convertFromTicket());
         int floor = ticket.getParkingSpot().getParkingSpotNumber()/100;

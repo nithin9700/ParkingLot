@@ -7,14 +7,15 @@ import models.Ticket;
 import repository.BillRepository;
 import repository.ParkingFloorRepository;
 import repository.ParkingSpotRepository;
+import repository.TicketRepository;
 import services.BillService;
 import services.TicketService;
 
 public class BillController {
     private final BillService billService;
 
-    public BillController(BillRepository billRepository, ParkingFloorRepository parkingFloorRepository, ParkingSpotRepository parkingSpotRepository) {
-        billService = new BillService(billRepository, parkingFloorRepository, parkingSpotRepository);
+    public BillController(BillRepository billRepository, ParkingFloorRepository parkingFloorRepository, ParkingSpotRepository parkingSpotRepository, TicketRepository ticketRepository) {
+        billService = new BillService(billRepository, parkingFloorRepository, parkingSpotRepository, ticketRepository);
     }
 
     public Bill billGenerator(int ticket){
