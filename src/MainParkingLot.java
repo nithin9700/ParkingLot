@@ -1,11 +1,13 @@
 import controller.BillController;
 import controller.InitializationController;
+import controller.PaymentController;
 import controller.TicketController;
 import models.*;
 import models.enums.ParkingLotStatus;
 import models.enums.VehicleType;
 import repository.*;
 import services.InitializationService;
+import services.PaymentService;
 import services.TicketService;
 
 import java.util.Scanner;
@@ -37,6 +39,7 @@ public class MainParkingLot {
                 System.out.println("Please select the option: 1. Enter the parking lot , 2 Exit the parking lot, 3 Exit");
                 int option = userInput.nextInt();
                 Ticket ticket = null;
+
                 if(option == 1) {
                     Vehicle vehicle = new Vehicle();
                     System.out.println("Please Enter the Vehicle Number:");
@@ -61,7 +64,14 @@ public class MainParkingLot {
                     System.out.println("Your Bill amount: ");
                     System.out.println(bill.getAmount());
                 }
-                else if(option == 3)
+                else if(option == 3) {
+                    int billId = userInput.nextInt();
+                    PaymentService paymentService = new PaymentService();
+                    PaymentController paymentController = new PaymentController(paymentService);
+                    paymentController.payBill(billId);
+
+                }
+                else if(option == 4)
                     System.out.println("Thank you visiting");
                     break;
             }
