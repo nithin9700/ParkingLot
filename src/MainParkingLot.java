@@ -47,7 +47,8 @@ public class MainParkingLot {
             Thread.sleep(10000);
             BillController billController = new BillController(ticket, billRepository, parkingFloorRepository);
             Bill bill = billController.billGenerator();
-            billRepository.set(bill);
+            System.out.println("Your Bill amount: ");
+            System.out.println(bill.getAmount());
         }
     }
 
