@@ -8,14 +8,13 @@ public class ParkingSpotRepository {
     private final HashMap<Integer, ParkingSpot> parkingSpotTable;
     private int parkingSpotId = 0;
 
-
     public ParkingSpotRepository() {
         this.parkingSpotTable = new HashMap<>();;
     }
 
     public void set(ParkingSpot parkingSpot) {
         parkingSpotTable.put(++parkingSpotId, parkingSpot);
-        System.out.println("ParkingFloor has been added to repository" + parkingSpotId);
+        System.out.println("ParkingSpot has been added to repository " + parkingSpotId);
     }
 
     public ParkingSpot get(int ParkingSpotId) {
@@ -23,4 +22,5 @@ public class ParkingSpotRepository {
         if (parkingSpot == null) throw new InvalidParkingSpot("ParkingSpot id was not found in dataBase : " + ParkingSpotId);
         return parkingSpot;
     }
+
 }

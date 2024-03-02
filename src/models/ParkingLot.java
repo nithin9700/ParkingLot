@@ -2,10 +2,10 @@ package models;
 
 import models.enums.ParkingLotStatus;
 import models.enums.VehicleType;
+import repository.*;
 import services.Strategy.BillCalculationStrategy.BillCalculationStrategy;
-import services.Strategy.SpotAllocationStrategy.SpotAllocationStrategy;
+import services.Strategy.SpotAllocationStrategy.SpotAllocationStrategyFactory;
 
-import java.awt.desktop.AppReopenedEvent;
 import java.util.List;
 
 public class ParkingLot extends BaseModel {
@@ -16,12 +16,24 @@ public class ParkingLot extends BaseModel {
     private List<VehicleType> vehicleTypesSupported;
     private String address;
     private BillCalculationStrategy billCalculationStrategy;
-    private SpotAllocationStrategy spotAllocationStrategy;
+    private SpotAllocationStrategyFactory spotAllocationStrategyFactory;
+
+    private GateRepository gateRepository;
+    private ParkingSpotRepository parkingSpotRepository;
+    private ParkingLotRepository parkingLotRepository;
+    private ParkingFloorRepository parkingFloorRepository;
+
+
+
 
     public ParkingLot() {
     }
 
-    public ParkingLot(List<ParkingFloor> floors, int capacity, ParkingLotStatus parkingLotStatus, String name, List<VehicleType> vehicleTypesSupported, String address, BillCalculationStrategy billCalculationStrategy, SpotAllocationStrategy spotAllocationStrategy) {
+    public ParkingLot(List<ParkingFloor> floors, int capacity, ParkingLotStatus parkingLotStatus, String name,
+                      List<VehicleType> vehicleTypesSupported, String address, BillCalculationStrategy billCalculationStrategy,
+                      SpotAllocationStrategyFactory spotAllocationStrategyFactory, GateRepository gateRepository,
+                      ParkingSpotRepository parkingSpotRepository, ParkingLotRepository parkingLotRepository,
+                      ParkingFloorRepository parkingFloorRepository) {
         this.floors = floors;
         this.capacity = capacity;
         this.parkingLotStatus = parkingLotStatus;
@@ -29,7 +41,52 @@ public class ParkingLot extends BaseModel {
         this.vehicleTypesSupported = vehicleTypesSupported;
         this.address = address;
         this.billCalculationStrategy = billCalculationStrategy;
-        this.spotAllocationStrategy = spotAllocationStrategy;
+        this.spotAllocationStrategyFactory = spotAllocationStrategyFactory;
+        this.gateRepository = gateRepository;
+        this.parkingSpotRepository = parkingSpotRepository;
+        this.parkingLotRepository = parkingLotRepository;
+        this.parkingFloorRepository = parkingFloorRepository;
+
+    }
+
+    public SpotAllocationStrategyFactory getSpotAllocationStrategyFactory() {
+        return spotAllocationStrategyFactory;
+    }
+
+    public void setSpotAllocationStrategyFactory(SpotAllocationStrategyFactory spotAllocationStrategyFactory) {
+        this.spotAllocationStrategyFactory = spotAllocationStrategyFactory;
+    }
+
+    public GateRepository getGateRepository() {
+        return gateRepository;
+    }
+
+    public void setGateRepository(GateRepository gateRepository) {
+        this.gateRepository = gateRepository;
+    }
+
+    public ParkingSpotRepository getParkingSpotRepository() {
+        return parkingSpotRepository;
+    }
+
+    public void setParkingSpotRepository(ParkingSpotRepository parkingSpotRepository) {
+        this.parkingSpotRepository = parkingSpotRepository;
+    }
+
+    public ParkingLotRepository getParkingLotRepository() {
+        return parkingLotRepository;
+    }
+
+    public void setParkingLotRepository(ParkingLotRepository parkingLotRepository) {
+        this.parkingLotRepository = parkingLotRepository;
+    }
+
+    public ParkingFloorRepository getParkingFloorRepository() {
+        return parkingFloorRepository;
+    }
+
+    public void setParkingFloorRepository(ParkingFloorRepository parkingFloorRepository) {
+        this.parkingFloorRepository = parkingFloorRepository;
     }
 
     public List<ParkingFloor> getFloors() {
@@ -88,11 +145,12 @@ public class ParkingLot extends BaseModel {
         this.billCalculationStrategy = billCalculationStrategy;
     }
 
-    public SpotAllocationStrategy getSpotAllocationStrategy() {
-        return spotAllocationStrategy;
+    public SpotAllocationStrategyFactory getSpotAllocationStrategy() {
+        return spotAllocationStrategyFactory;
     }
 
-    public void setSpotAllocationStrategy(SpotAllocationStrategy spotAllocationStrategy) {
-        this.spotAllocationStrategy = spotAllocationStrategy;
+    public void setSpotAllocationStrategy(SpotAllocationStrategyFactory spotAllocationStrategyFactory) {
+        this.spotAllocationStrategyFactory = spotAllocationStrategyFactory;
     }
+
 }

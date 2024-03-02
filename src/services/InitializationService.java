@@ -13,13 +13,18 @@ public class InitializationService {
     private final ParkingSpotRepository parkingSpotRepository;
     private final ParkingLotRepository parkingLotRepository;
     private final ParkingFloorRepository parkingFloorRepository;
+    private final TicketRepository ticketRepository;
+    private final BillRepository billRepository;
+    private final PaymentRepository paymentRepository;
 
-    public InitializationService( GateRepository gateRepository, ParkingSpotRepository parkingSpotRepository, ParkingLotRepository parkingLotRepository, ParkingFloorRepository parkingFloorRepository) {
+    public InitializationService(GateRepository gateRepository, ParkingSpotRepository parkingSpotRepository, ParkingLotRepository parkingLotRepository, ParkingFloorRepository parkingFloorRepository, TicketRepository ticketRepository, BillRepository billRepository, PaymentRepository paymentRepository) {
         this.gateRepository = gateRepository;
         this.parkingSpotRepository = parkingSpotRepository;
         this.parkingLotRepository = parkingLotRepository;
         this.parkingFloorRepository = parkingFloorRepository;
-
+        this.ticketRepository = ticketRepository;
+        this.billRepository = billRepository;
+        this.paymentRepository = paymentRepository;
     }
 
     public ParkingLot init(){
@@ -52,7 +57,7 @@ public class InitializationService {
             Gate exitGate = new Gate();
             exitGate.setGateNumber((i * 1000) + 2);
             exitGate.setGateStatus(GateStatus.OPENED);
-            exitGate.setOperator("Operator : "+  (i * 1000) + 1);
+            exitGate.setOperator("Operator : "+  (i * 1000) + 2);
             gateRepository.set(exitGate);
             parkingFloor.setExitGate(exitGate);
             parkingFloors.add(parkingFloor);

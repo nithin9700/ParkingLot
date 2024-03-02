@@ -1,4 +1,30 @@
 Tasks -
 1. Create the parkingSpot type classes, EVParkingSpot etc.
-2. Full fledged, class diagram for ParkingLot [hint -> if we can create the class diagram from the code]
+2. Fullfledged, class diagram for ParkingLot [hint -> if we can create the class diagram from the code]
 3. Schema Design -> tables for the entities -> most important
+
+
+Scanner userInput = new Scanner(System.in);
+        if(parkingLot.getParkingLotStatus().equals(ParkingLotStatus.NOT_AVAILABLE) ||
+                parkingLot.getParkingLotStatus().equals(ParkingLotStatus.UNDER_MAINTENANCE)){
+            System.out.println("We are sorry our "+parkingLot.getName()+" parking lot is:" + parkingLot.getParkingLotStatus());
+        }
+        else {
+            Vehicle vehicle = new Vehicle();
+            System.out.println("Please Enter the Vehicle Number:");
+            String vehicleNumber = userInput.next();
+            System.out.println("Please Enter the Vehicle Color:");
+            String vehicleColor = userInput.next();
+            System.out.println("Please Enter the Vehicle Type:");
+            String vehicle_type = userInput.next();
+            vehicle.setVehicleNumber(vehicleNumber);
+            vehicle.setColor(vehicleColor);
+            vehicle.setVehicleType(getVehicleType(vehicle_type));
+
+        }
+        private static VehicleType getVehicleType(String vehicle_type){
+            if(vehicle_type.equalsIgnoreCase(String.valueOf(VehicleType.EV_VEHICLE))) return VehicleType.EV_VEHICLE;
+            if(vehicle_type.equalsIgnoreCase(String.valueOf(VehicleType.LUXURY_VEHICLE))) return VehicleType.LUXURY_VEHICLE;
+            if(vehicle_type.equalsIgnoreCase(String.valueOf(VehicleType.FOUR_WHEELER))) return VehicleType.FOUR_WHEELER;
+            return VehicleType.TWO_WHEELER;
+        }

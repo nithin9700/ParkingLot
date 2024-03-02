@@ -1,5 +1,6 @@
 package models;
 
+import models.enums.SurgePrice;
 import models.enums.VehicleType;
 
 import java.time.LocalDateTime;
@@ -9,12 +10,12 @@ public class Ticket extends BaseModel{
     private ParkingSpot parkingSpot;
     private VehicleType vehicleType;
     private Vehicle vehicle;
-    private boolean surge;
+    private SurgePrice surge;
 
     public Ticket() {
     }
 
-    public Ticket(LocalDateTime entryTime, ParkingSpot parkingSpot, VehicleType vehicleType, Vehicle vehicle, boolean surge) {
+    public Ticket(LocalDateTime entryTime, ParkingSpot parkingSpot, VehicleType vehicleType, Vehicle vehicle, SurgePrice surge) {
         this.entryTime = entryTime;
         this.parkingSpot = parkingSpot;
         this.vehicleType = vehicleType;
@@ -22,11 +23,11 @@ public class Ticket extends BaseModel{
         this.surge = surge;
     }
 
-    public boolean isSurge() {
+    public SurgePrice isSurge() {
         return surge;
     }
 
-    public void setSurge(boolean surge) {
+    public void setSurge(SurgePrice surge) {
         this.surge = surge;
     }
 

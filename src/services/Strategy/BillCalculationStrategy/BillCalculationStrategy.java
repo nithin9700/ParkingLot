@@ -1,4 +1,10 @@
 package services.Strategy.BillCalculationStrategy;
 
-public class BillCalculationStrategy {
+import models.Bill;
+import models.Ticket;
+
+public interface BillCalculationStrategy {
+
+    Bill parkingCharges(Ticket ticket);
+
 }
