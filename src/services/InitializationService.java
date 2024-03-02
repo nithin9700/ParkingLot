@@ -83,7 +83,7 @@ public class InitializationService {
             parkingSpot.setVehicleType(VehicleType.TWO_WHEELER);
         }
         else{
-            parkingSpot.setVehicleType(VehicleType.TWO_WHEELER);
+            parkingSpot.setVehicleType(VehicleType.EV_VEHICLE);
         }
         return parkingSpot;
     }

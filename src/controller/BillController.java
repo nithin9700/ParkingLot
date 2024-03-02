@@ -9,7 +9,7 @@ import services.BillService;
 import services.TicketService;
 
 public class BillController {
-    private BillService billService;
+    private final BillService billService;
 
     public BillController(Ticket ticket, BillRepository billRepository, ParkingFloorRepository parkingFloorRepository) {
         billService = new BillService(ticket, billRepository, parkingFloorRepository);

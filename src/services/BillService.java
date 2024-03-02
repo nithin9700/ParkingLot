@@ -12,10 +12,9 @@ import services.Strategy.BillCalculationStrategy.BillCalculationStrategyFactory;
 import services.TicketService;
 
 public class BillService {
-    private Ticket ticket;
-    private BillCalculationStrategy billCalculationStrategy;
-    private BillRepository billRepository;
-    private ParkingFloorRepository parkingFloorRepository;
+    private final Ticket ticket;
+    private final BillRepository billRepository;
+    private final ParkingFloorRepository parkingFloorRepository;
     public BillService(Ticket ticket, BillRepository billRepository, ParkingFloorRepository parkingFloorRepository) {
         this.ticket = ticket;
         this.billRepository = billRepository;
@@ -23,6 +22,7 @@ public class BillService {
     }
 
     public Bill billGenerator(){
+        BillCalculationStrategy billCalculationStrategy;
         billCalculationStrategy = BillCalculationStrategyFactory.getBillCalculationStrategy(convertFromTicket());
         int floor = ticket.getParkingSpot().getParkingSpotNumber()/100;
         ParkingFloor parkingFloor =  parkingFloorRepository.get(floor);

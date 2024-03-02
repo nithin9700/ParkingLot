@@ -11,9 +11,9 @@ import services.Strategy.SpotAllocationStrategy.SpotAllocationStrategyFactory;
 import java.time.LocalDateTime;
 
 public class TicketService {
-    private ParkingLot parkingLot;
-    private Vehicle vehicle;
-    private TicketRepository ticketRepository;
+    private final ParkingLot parkingLot;
+    private final Vehicle vehicle;
+    private final TicketRepository ticketRepository;
 
     public TicketService(ParkingLot parkingLot, Vehicle vehicle, TicketRepository ticketRepository){
         this.parkingLot = parkingLot;
