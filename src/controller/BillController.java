@@ -2,21 +2,23 @@ package controller;
 
 import models.Bill;
 import models.ParkingFloor;
+import models.ParkingSpot;
 import models.Ticket;
 import repository.BillRepository;
 import repository.ParkingFloorRepository;
+import repository.ParkingSpotRepository;
 import services.BillService;
 import services.TicketService;
 
 public class BillController {
     private final BillService billService;
 
-    public BillController(Ticket ticket, BillRepository billRepository, ParkingFloorRepository parkingFloorRepository) {
-        billService = new BillService(ticket, billRepository, parkingFloorRepository);
+    public BillController(BillRepository billRepository, ParkingFloorRepository parkingFloorRepository, ParkingSpotRepository parkingSpotRepository) {
+        billService = new BillService(billRepository, parkingFloorRepository, parkingSpotRepository);
     }
 
-    public Bill billGenerator(){
-        return billService.billGenerator();
+    public Bill billGenerator(int ticket){
+        return billService.billGenerator(ticket);
     }
 }
 /*

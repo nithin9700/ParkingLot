@@ -32,23 +32,33 @@ public class MainParkingLot {
             System.out.println("We are sorry our "+parkingLot.getName()+" parking lot is:" + parkingLot.getParkingLotStatus());
         }
         else {
-            Vehicle vehicle = new Vehicle();
-            System.out.println("Please Enter the Vehicle Number:");
-            String vehicleNumber = userInput.next();
-            System.out.println("Please Enter the Vehicle Color:");
-            String vehicleColor = userInput.next();
-            System.out.println("Please Enter the Vehicle Type:");
-            String vehicle_type = userInput.next();
-            vehicle.setVehicleNumber(vehicleNumber);
-            vehicle.setColor(vehicleColor);
-            vehicle.setVehicleType(getVehicleType(vehicle_type));
-            TicketController ticketController = new TicketController(parkingLot, vehicle, ticketRepository);
-            Ticket ticket = ticketController.getTicket();
-            Thread.sleep(10000);
-            BillController billController = new BillController(ticket, billRepository, parkingFloorRepository);
-            Bill bill = billController.billGenerator();
-            System.out.println("Your Bill amount: ");
-            System.out.println(bill.getAmount());
+            while (true) {
+                System.out.println("Please select the option: 1. Enter the parking lot , 2 Exit the parking lot");
+                int option = userInput.nextInt();
+                Ticket ticket = null;
+                if(option == 1) {
+                    Vehicle vehicle = new Vehicle();
+                    System.out.println("Please Enter the Vehicle Number:");
+                    String vehicleNumber = userInput.next();
+                    System.out.println("Please Enter the Vehicle Color:");
+                    String vehicleColor = userInput.next();
+                    System.out.println("Please Enter the Vehicle Type:");
+                    String vehicle_type = userInput.next();
+                    vehicle.setVehicleNumber(vehicleNumber);
+                    vehicle.setColor(vehicleColor);
+                    vehicle.setVehicleType(getVehicleType(vehicle_type));
+                    TicketController ticketController = new TicketController(parkingLot, vehicle, ticketRepository, parkingSpotRepository);
+
+                }
+                else if(option == 2) {
+                    int ticketId = userInput.nextInt();
+                    BillController billController = new BillController(billRepository, parkingFloorRepository, parkingSpotRepository);
+                    Bill bill = billController.billGenerator(ticketId);
+                    System.out.println(ticket);
+                    System.out.println("Your Bill amount: ");
+                    System.out.println(bill.getAmount());
+                }
+            }
         }
     }
 

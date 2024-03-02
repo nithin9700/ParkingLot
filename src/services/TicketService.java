@@ -2,9 +2,11 @@ package services;
 
 import controller.TicketController;
 import models.ParkingLot;
+import models.ParkingSpot;
 import models.Ticket;
 import models.Vehicle;
 import models.enums.SpotAllocationStrategyType;
+import repository.ParkingSpotRepository;
 import repository.TicketRepository;
 import services.Strategy.SpotAllocationStrategy.SpotAllocationStrategyFactory;
 
@@ -14,11 +16,13 @@ public class TicketService {
     private final ParkingLot parkingLot;
     private final Vehicle vehicle;
     private final TicketRepository ticketRepository;
+    private final ParkingSpotRepository parkingSpotRepository;
 
-    public TicketService(ParkingLot parkingLot, Vehicle vehicle, TicketRepository ticketRepository){
+    public TicketService(ParkingLot parkingLot, Vehicle vehicle, TicketRepository ticketRepository, ParkingSpotRepository parkingSpotRepository) {
         this.parkingLot = parkingLot;
         this.vehicle = vehicle;
         this.ticketRepository = ticketRepository;
+        this.parkingSpotRepository = parkingSpotRepository;
     }
 
     public Ticket ticketGenerate(){
@@ -33,6 +37,7 @@ public class TicketService {
                         getSpotAllocationStrategy(
                                 SpotAllocationStrategyType.LINER).
                         getVehicleSpot(parkingLot, vehicle));
+        parkingSpotRepository.set(ticket.getParkingSpot());
         ticketRepository.set(ticket);
         return ticket;
 
