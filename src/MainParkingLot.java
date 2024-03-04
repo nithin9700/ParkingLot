@@ -36,7 +36,7 @@ public class MainParkingLot {
         }
         else {
             while (true) {
-                System.out.println("Please select the option: 1. Enter the parking lot , 2 Exit the parking lot, 3 Exit");
+                System.out.println("Please select the option: \n1 Enter the parking lot \n2 Exit the parking lot \n3 Payment \n4 Exit");
                 int option = userInput.nextInt();
                 Ticket ticket = null;
 
@@ -53,27 +53,27 @@ public class MainParkingLot {
                     vehicle.setVehicleType(getVehicleType(vehicle_type));
                     TicketService ticketService = new TicketService(parkingLot, vehicle, ticketRepository, parkingSpotRepository);
                     TicketController ticketController = new TicketController(ticketService);
-                    ticket = ticketController.getTicket();
+                    ticketController.getTicket();
                 }
                 else if(option == 2) {
                     System.out.println("Please enter ticket ID:");
                     int ticketId = userInput.nextInt();
                     BillController billController = new BillController(billRepository, parkingFloorRepository, parkingSpotRepository, ticketRepository);
                     Bill bill = billController.billGenerator(ticketId);
-                    System.out.println(ticket);
                     System.out.println("Your Bill amount: ");
                     System.out.println(bill.getAmount());
                 }
                 else if(option == 3) {
+                    System.out.println("Please enter Bill ID:");
                     int billId = userInput.nextInt();
                     PaymentService paymentService = new PaymentService();
                     PaymentController paymentController = new PaymentController(paymentService);
                     paymentController.payBill(billId);
-
                 }
-                else if(option == 4)
-                    System.out.println("Thank you visiting");
+                else if(option == 4) {
+                    System.out.println("Thank you for visiting");
                     break;
+                }
             }
         }
     }
